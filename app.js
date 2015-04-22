@@ -1,10 +1,12 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Odoo = require('node-odoo');
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public/'));
 
 io.on('connection', function (socket) {
   var odoo = new Odoo({
