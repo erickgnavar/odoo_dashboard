@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odoo realtime dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Odoo realtime dashboard</h1>
+                </div>
+                <ul class="list-group">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var ulELement = document.querySelector('.list-group');
+        socket.on('notification', function (data) {
+            ulELement.innerHTML += '<li class="list-group-item">' + data.message + '</li>';
+        });
+    </script>
+</body>
+</html>
